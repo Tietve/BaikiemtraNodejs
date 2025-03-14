@@ -1,0 +1,27 @@
+<%- include('header.ejs') %>
+<h2>Welcome to Tree Shop</h2>
+<form action="/add-tree" method="post">
+    <label for="treename">Tree Name:</label>
+    <input type="text" name="treename" required>
+    <label for="description">Description:</label>
+    <input type="text" name="description" required>
+    <label for="image">Image URL:</label>
+    <input type="text" name="image">
+    <button type="submit">Add Tree</button>
+</form>
+<h3>Our Trees</h3>
+<ul>
+    <% for (let tree of trees) { %>
+        <li>
+            <h4><%= tree.treename %></h4>
+            <p><%= tree.description %></p>
+            <% if (tree.image) { %>
+                <img src="<%= tree.image %>" alt="Tree Image" width="100">
+            <% } %>
+        </li>
+    <% } %>
+</ul>
+<form action="/reset" method="post">
+    <button type="submit">Reset Database</button>
+</form>
+<%- include('footer.ejs') %>
